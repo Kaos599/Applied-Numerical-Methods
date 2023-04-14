@@ -28,8 +28,9 @@ root_calculator() # call the function to find the root and set the value of x_no
 x = symbols('x') # define the symbolic variable x
 d = lambdify(x, diff(expr,x)) # define the derivative of the expression using x_nought
 while True: # use a while loop to apply the Newton-Raphson method
+    d1 = sp.diff(expr, x) # differentiating the expression for NR
     x_nought_previous = x_nought # store the value of x_nought before it gets updated
-    expr2 = x_nought - (expr.subs(x, x_nought)/d(x_nought)) # apply the Newton-Raphson method to find the new value of x_nought
+    expr2 = x_nought - expr.subs(x, x_nought)/d1.subs(x, x_nought) # apply the Newton-Raphson method to find the new value of x_nought
     x_nought = round(expr2, 4) # round the new value of x_nought to 4 decimal places
     if round(x_nought_previous, 4) == round(x_nought, 4): # check if the new value of x_nought is the same as the previous value to stop the loop
         print("The root is:", x_nought) # print the root
