@@ -27,66 +27,72 @@ def root_calculator():
     f = lambdify(x, expr)
     # Calculating the derivative of user-inputed function
     p1 = sp.diff(expr, x)
-    #Prompt the user to enter whether they want positive or negative root
-    sign = input("Do you want positve root (p) or negative root (n) ?: ")
-    print("-"*70)
-    # Printing the user-inputed function and its derivative
-    print("f(x)=",fn_input)
-    print("f'(x)=",p1)
-    if sign == "p":
-        # Calculate the function value for a range of x values
-        root = [f(i) for i in range(0, 20)]
-        # Loop through the function values and find two adjacent values that straddle the x-axis
-        for j in range(0, 19):
-            if (root[j] < 0 and root[j + 1] > 0) or (root[j] > 0 and root[j + 1] < 0) or (root[j] < 0 and root[j + 1] == 0) or (root[j] > 0 and root[j + 1] == 0):
-                # Print the function values for each iteration
-                for k in range(0,j+1):
-                    print("Iteration", k, ": f(",k,") gives us", root[k])
-                print("Iteration", j+1, ": f(",j+1,") gives us", root[j+1])
-                print("-"*70)
-                # Print the two values and their indices
-                print("First value of x =", j, "and it gives us:", root[j])
-                print("Second value of x =", j + 1, "and it gives us:", root[j + 1])
-                # Calculate the x_nought
-                if (abs(root[j]) > abs(root[j+1])):
-                    x_nought = j+1
-                elif(abs(root[j]) < abs(root[j+1])):
-                    x_nought = j
-                else:
-                    x_nought = ((j+j+1)/2)
-                # You can change this value by copying 'x_nought = (Value Here)' and deleting the if statement that is calculating the current value of x nought
-                print("Value of X(Nought) is", x_nought)
-                # Return the midpoint value
-                return x_nought
-    if sign == "n":
-        # Calculate the function value for a range of x values
-        root = [f(i) for i in range(-1, -19, -1)]
-        # Loop through the function values and find two adjacent values that straddle the x-axis
-        for j in range(-1, -19, -1):
-            if (root[j] < 0 and root[j - 1] > 0) or (root[j] > 0 and root[j - 1] < 0) or (root[j] < 0 and root[j - 1] == 0) or (root[j] > 0 and root[j - 1] == 0):
-                # Print the function values for each iteration
-                for k in range(-1,j-1,-1):
-                    print("Iteration", -k, ": f(",k,") gives us", root[k])
-                print("Iteration", -j+1, ": f(",j-1,") gives us", root[j-1])
-                print("-"*70)
-                # Print the two values and their indices
-                print("First value of x =", j, "and it gives us:", root[j])
-                print("Second value of x =", j - 1, "and it gives us:", root[j - 1])
-                # Calculate the x_nought
-                if (abs(root[j]) > abs(root[j-1])):
-                    x_nought = j-1
-                elif(abs(root[j]) < abs(root[j-1])):
-                    x_nought = j
-                else:
-                    x_nought = ((j+j-1)/2)
-                # You can change this value by copying 'x_nought = (Value Here)' and deleting the if statement that is calculating the current value of x nought
-                print("Therefore value of X(Nought) is", x_nought)
-                # Return the midpoint value
-                return x_nought
+    #Prompt the user to enter whether they want to input their own value of xnot or get it calculated
+    custom=input("Do you want to choose the value of X(Nought)? (y or n): ")
+    if custom == 'y':
+        x_nought = float(input("X(Nought)= "))
+        return x_nought
+    elif custom == 'n':
+        #Prompt the user to enter whether they want positive or negative root
+        sign = input("Do you want positve root (p) or negative root (n) ?: ")
+        print("-"*70)
+        # Printing the user-inputed function and its derivative
+        print("f(x)=",fn_input)
+        print("f'(x)=",p1)
+        if sign == "p":
+            # Calculate the function value for a range of x values
+            root = [f(i) for i in range(0, 20)]
+            # Loop through the function values and find two adjacent values that straddle the x-axis
+            for j in range(0, 19):
+                if (root[j] < 0 and root[j + 1] > 0) or (root[j] > 0 and root[j + 1] < 0) or (root[j] < 0 and root[j + 1] == 0) or (root[j] > 0 and root[j + 1] == 0):
+                    # Print the function values for each iteration
+                    for k in range(0,j+1):
+                        print("Iteration", k, ": f(",k,") gives us", root[k])
+                    print("Iteration", j+1, ": f(",j+1,") gives us", root[j+1])
+                    print("-"*70)
+                    # Print the two values and their indices
+                    print("First value of x =", j, "and it gives us:", root[j])
+                    print("Second value of x =", j + 1, "and it gives us:", root[j + 1])
+                    # Calculate the x_nought
+                    if (abs(root[j]) > abs(root[j+1])):
+                        x_nought = j+1
+                    elif(abs(root[j]) < abs(root[j+1])):
+                        x_nought = j
+                    else:
+                        x_nought = ((j+j+1)/2)
+                    # You can change this value by copying 'x_nought = (Value Here)' and deleting the if statement that is calculating the current value of x nought
+                    print("Value of X(Nought) is", x_nought)
+                    # Return the midpoint value
+                    return x_nought
+        if sign == "n":
+            # Calculate the function value for a range of x values
+            root = [f(i) for i in range(-1, -19, -1)]
+            # Loop through the function values and find two adjacent values that straddle the x-axis
+            for j in range(-1, -19, -1):
+                if (root[j] < 0 and root[j - 1] > 0) or (root[j] > 0 and root[j - 1] < 0) or (root[j] < 0 and root[j - 1] == 0) or (root[j] > 0 and root[j - 1] == 0):
+                    # Print the function values for each iteration
+                    for k in range(-1,j-1,-1):
+                        print("Iteration", -k, ": f(",k,") gives us", root[k])
+                    print("Iteration", -j+1, ": f(",j-1,") gives us", root[j-1])
+                    print("-"*70)
+                    # Print the two values and their indices
+                    print("First value of x =", j, "and it gives us:", root[j])
+                    print("Second value of x =", j - 1, "and it gives us:", root[j - 1])
+                    # Calculate the x_nought
+                    if (abs(root[j]) > abs(root[j-1])):
+                        x_nought = j-1
+                    elif(abs(root[j]) < abs(root[j-1])):
+                        x_nought = j
+                    else:
+                        x_nought = ((j+j-1)/2)
+                    # You can change this value by copying 'x_nought = (Value Here)' and deleting the if statement that is calculating the current value of x nought
+                    print("Therefore value of X(Nought) is", x_nought)
+                    # Return the midpoint value
+                    return x_nought
+        else:
+            print("Invalid Input")
     else:
         print("Invalid Input")
-
-
 
 # Call the root_calculator function to get the initial value of x_nought
 x_nought = root_calculator()
