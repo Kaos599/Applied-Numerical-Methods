@@ -5,7 +5,7 @@
 # To use e as e**x use exp(x)
 # To use power use x**y to signify x^y
 # To use multiply use x*y to signify xy
-# To use divide use x
+# To use divide use x/y
 
 
 
