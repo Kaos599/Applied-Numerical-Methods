@@ -47,19 +47,35 @@ These are methods that estimate the value of a function at a given point by usin
 
 
 ## Requirements
+
 •	Pre-requisite = Sympy Module, Math Module, Numpy Module - You need to install these modules before running our programs. You can use pip or conda to install them from the command line. For example, to install sympy using pip, you can type:
+
 ```	pip install sympy```
+
+
 •	Copy the code
+
 •	Just copy paste the programs from the repository to your IDE and run them! - 
+
 • You can find our programs in the GitHub repository at https://github.com/Kaos599/Applied-Numerical-Methods.
-• You can download or clone the repository to your local machine and then open the programs in your preferred IDE (Integrated Development Environment), such as PyCharm, Spyder, Visual Studio Code, etc. You can also run the programs in a Jupyter Notebook or Google Colab. 
+
+• You can download or clone the repository to your local machine and then open the programs in your preferred IDE (Integrated Development Environment), such as PyCharm, Spyder, Visual Studio 
+Code, etc. You can also run the programs in a Jupyter Notebook or Google Colab. 
+
 • To run a program, you just need to copy and paste the code into your IDE and then execute it. You will see some instructions and prompts on how to use the program and enter your inputs
 
 ## Future Plans:
-•	Making it more user friendly - We plan to improve the user interface and experience of our programs by optimizing it for better UX. We also plan to add more validations and error handling to prevent invalid inputs and outputs.
+
+•	Making it more user friendly - We plan to improve the user interface and experience of our programs by optimizing it for better UX. We also plan to add more validations and error handling to 
+prevent invalid inputs and outputs.
+
 •	Developing a website based on this - We plan to create a website that will host our programs and allow users to access them online without installing anything. The website will also have more information and resources about numerical methods and Python programming.
-•	Adding more methods - We plan to expand our collection of numerical methods by adding more programs for different topics such as optimization, integration, differential equations, etc. We also plan to update our existing programs with more options and variations of the methods.
+
+•	Adding more methods - We plan to expand our collection of numerical methods by adding more programs for different topics such as optimization, integration, differential equations, etc. We 
+also plan to update our existing programs with more options and variations of the methods.
+
 •	Improving Efficiency - We plan to optimize our code and algorithms to make them run faster and more accurately. 
+
 •	Adding more features - We plan to add more features to our programs.
 
 
