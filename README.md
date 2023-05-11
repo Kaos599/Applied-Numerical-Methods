@@ -7,25 +7,42 @@ The main purpose of this repository is to provide a learning resource for studen
 
 ## Programs for the methods that we have made:
 
-### Iterative Methods - These are methods that use an initial guess and then repeatedly apply a formula to obtain a better approximation of the solution. Some examples of iterative methods are:
+### Iterative Methods - 
+These are methods that use an initial guess and then repeatedly apply a formula to obtain a better approximation of the solution. Some examples of iterative methods are:
+
 •	Newton-Raphson Method - This is a method for finding the roots of a nonlinear equation by using the derivative of the function.
+
 •	Secant Method - This is a method for finding the roots of a nonlinear equation by using a secant line that passes through two points on the function.
+
 •	Fixed-Point Iteration Method - This is a method for finding the roots of a nonlinear equation by rewriting it as x = g(x) and then iterating x = g(x) until convergence.
+
 •	Gauss-Elimination - This is a method for solving a system of linear equations by reducing the matrix to an upper triangular form using elementary row operations.
+
 •	Gauss-Seidel - This is a method for solving a system of linear equations by using an iterative scheme that updates each variable in turn.
 
-### Interpolation Methods - These are methods that estimate the value of a function at a given point by using known values of the function at other points. Some examples of interpolation methods are:
+### Interpolation Methods - 
+These are methods that estimate the value of a function at a given point by using known values of the function at other points. Some examples of interpolation methods are:
+
 •	Newton Forward Interpolation - This is a method for interpolating a function by using a forward difference table and a polynomial of degree n-1 that passes through n given points.
+
 •	Newton Backward Interpolation - This is a method for interpolating a function by using a backward difference table and a polynomial of degree n-1 that passes through n given points.
+
 •	Lagrange Interpolation - This is a method for interpolating a function by using a polynomial of degree n-1 that passes through n given points.
 
 ## Features:
+
 •	Root Calculation - Our programs can calculate the roots of nonlinear equations using various iterative methods. You can choose the method that suits your problem best and adjust the parameters such as tolerance, maximum iterations, initial guess, etc.
+
 •	Positive or Negative Roots - Our programs can find both positive and negative roots of nonlinear equations. You can specify the sign of the root you want or let the program find any root available.
+
 •	Custom X_Nought Value option - Our programs allow you to enter your own initial guess for the iterative methods. You can use this option to speed up the convergence or to avoid local minima or maxima.
+
 •	Solves equations containing Logs, exponentials, Euler’s numbers, trigonometric functions and of course division and multiplication - Our programs can handle various types of nonlinear equations that involve different mathematical functions and operations. You can enter your equation using Python syntax and our programs will evaluate it correctly.
+
 •	Gives you value of all iterations - Our programs can show you the value of each iteration for the iterative methods. You can use this feature to monitor the progress and accuracy of the solution.
+
 •	Gives you value of both roots - Our programs can find both the positive and negative roots of a quadratic equation using the quadratic formula. You can enter the coefficients of the equation and our programs will calculate and display both roots.
+
 •	Visualises Matrix calculations - Our programs can visualise the matrix operations involved in solving a system of linear equations using Gauss-Elimination or Gauss-Seidel methods. You can see how the matrix is transformed into an upper triangular form or how the variables are updated in each iteration. This can help you understand the methods better and check for errors.
 
 
