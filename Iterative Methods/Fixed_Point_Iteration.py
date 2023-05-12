@@ -5,7 +5,7 @@
 # To use e as e**x use exp(x)
 # To use power use x**y to signify x^y
 # To use multiply use x*y to signify xy
-# To use divide use x/y
+# To use divide use x
 
 
 
@@ -45,7 +45,7 @@ def root_calculator():
                     print("Iteration", k, ": x =", k, "gives us", root[k])
                 print("Iteration", j+1, ": x =", j+1, "gives us", root[j+1])
                 
-                return x_nought
+                return x_nought, j
     else:   
     # Looping through the list to find an interval where the root lies
         for j in range(0, 19):
@@ -103,7 +103,7 @@ def eligibility_of_using_FPI():
         print("Iteration method is not applicable")    
 
 # Calling the root_calculator() function and storing its return values in x_nought and j   
-x_nought = root_calculator()
+x_nought, j = root_calculator()
 
 # Calling the eligibility_of_using_FPI() function 
 f3 = eligibility_of_using_FPI()
@@ -126,16 +126,28 @@ while T == true:
     
     # Rounding expr3 to 4 decimal places and storing it in x_nought
     x_nought = round(expr3, 4)
-    
-    # Printing the iteration number and the value of x_nought
-    print("Iteration", i, ": x =", x_nought)
-    
-    # Checking if the previous and current values of x_nought are equal up to 4 decimal places
-    if round(x_nought_previous, 4) == round(x_nought, 4):
-        
-        # Printing the root as x_nought and breaking the loop
-        print("The root is:", x_nought)
-        break
-    
+
     # Incrementing the iteration counter by 1
     i += 1
+    if (i < 18 ):
+        # Printing the iteration number and the value of x_nought
+        print("Iteration", i, ": x =", x_nought)
+         # Checking if the previous and current values of x_nought are equal up to 4 decimal places
+        if round(x_nought_previous, 4) == round(x_nought, 4):
+            
+            # Printing the root as x_nought and breaking the loop
+            print("The root is:", x_nought)
+            break
+    
+    else:
+         print("Iteration", i, ": x =", x_nought)
+         # Checking if the previous and current values of x_nought are equal up to 4 decimal places
+         if round(x_nought_previous, 3) == round(x_nought, 3):
+            
+            # Printing the root as x_nought and breaking the loop
+            print("The root is:", x_nought)
+            break
+
+        
+       
+   
