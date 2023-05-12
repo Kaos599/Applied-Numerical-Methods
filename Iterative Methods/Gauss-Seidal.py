@@ -83,7 +83,7 @@ for i in range(20):
 
     # Update each variable using the most recent values of the other variables and round to four decimal places
     x1 = round(float(f1.subs({y: y1, z: z1}).evalf()), 4)
-    y1 = round(float(f2.subs({x: x_previous, z: z_previous}).evalf()), 4)
+    y1 = round(float(f2.subs({x: x1, z: z_previous}).evalf()), 4)
     z1 = round(float(f3.subs({x: x_previous, y: y_previous}).evalf()), 4)
 
     # Print the current iteration and values of each variable
