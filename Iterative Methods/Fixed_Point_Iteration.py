@@ -5,7 +5,7 @@
 # To use e as e**x use exp(x)
 # To use power use x**y to signify x^y
 # To use multiply use x*y to signify xy
-# To use divide use x/y
+# To use divide use x
 
 
 
@@ -29,23 +29,28 @@ def root_calculator():
     
     # Creating a lambda function to evaluate the expression numerically
     f = lambdify(x, expr)  
-    
-    # Evaluating the expression for x values from 0 to 19 and storing them in a list
-    root = [f(i) for i in range(0, 20)]
+
+    if("log" in fn_input):
+        # Evaluating the expression for x values from 0 to 19 and storing them in a list
+        root = [f(i) for i in range(1, 20)]
+    else:
+        # Evaluating the expression for x values from 0 to 19 and storing them in a list
+        root = [f(i) for i in range(0, 20)]
+
     # Checking if the input function contains a logarithm
     if("log" in fn_input): # Handling the logarithm case
         for j in range(1, 19):
             if (root[j] < 0 and root[j + 1] > 0) or (root[j] > 0 and root[j + 1] < 0) or (root[j] < 0 and root[j + 1] == 0) or (root[j] > 0 and root[j + 1] == 0):
                 
-                print("First value of x =", j, "and it gives us:", root[j])
-                print("Second value of x =", j + 1, "and it gives us:", root[j + 1])
-                x_nought = ((j+j+1)/2)
+                print("First value of x =", j + 1, "and it gives us:", root[j + 1])
+                print("Second value of x =", j + 2, "and it gives us:", root[j + 2])
+                x_nought = ((j+1+j+2)/2)
                 print("Value of X(Nought) is", x_nought)
-                for k in range(0,j+1):
-                    print("Iteration", k, ": x =", k, "gives us", root[k])
-                print("Iteration", j+1, ": x =", j+1, "gives us", root[j+1])
+                for k in range(1,j+1):
+                    print("Iteration", k, ": x =", k+1, "gives us", root[k+1])
+                print("Iteration", j+1, ": x =", j+2, "gives us", root[j+2])
                 
-                return x_nought
+                return x_nought, j
     else:   
     # Looping through the list to find an interval where the root lies
         for j in range(0, 19):
@@ -103,7 +108,7 @@ def eligibility_of_using_FPI():
         print("Iteration method is not applicable")    
 
 # Calling the root_calculator() function and storing its return values in x_nought and j   
-x_nought = root_calculator()
+x_nought, j = root_calculator()
 
 # Calling the eligibility_of_using_FPI() function 
 f3 = eligibility_of_using_FPI()
