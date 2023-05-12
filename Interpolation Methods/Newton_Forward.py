@@ -34,11 +34,11 @@ y_values=[]
 # taking user input for the values of x and y
 for i in range(0,user_input):
     x_value="x{}".format(i)
-    data[x_value]=int(input("Enter value of x({}): ".format(i)))
+    data[x_value]=float(input("Enter value of x({}): ".format(i)))
     x_values.append(data[x_value])
 for i in range(0,user_input):
     y_value="y{}".format(i)
-    data[y_value]=int(input("Enter value of y({}): ".format(i)))
+    data[y_value]=float(input("Enter value of y({}): ".format(i)))
     y_values.append(data[y_value])
 
 Table_maker(x_values, y_values)
