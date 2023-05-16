@@ -43,37 +43,36 @@ for i in range(0,user_input):
 
 Table_maker(x_values, y_values)
 
-# calculating the polynomial using Lagrange interpolation formula
-def lagrange_interpolation(x, x_values, y_values):
+# calculating the polynomial using Lagrange Inverse Interpolation formula
+def lagrange_inverse_interpolation(y, x_values, y_values):
     polynomial = 0
-    for i in range(len(x_values)):
-        term = y_values[i]
-        for j in range(len(x_values)):
+    for i in range(len(y_values)):
+        term = x_values[i]
+        for j in range(len(y_values)):
             if i != j:
-                term *= (x - x_values[j]) / (x_values[i] - x_values[j])
+                term *= (y - y_values[j]) / (y_values[i] - y_values[j])
         polynomial += term
     return polynomial
 
-# getting the value of x to be interpolated from the user
-x_interpolate = float(input("Enter the value of x to interpolate: "))
+# getting the value of y to be interpolated from the user
+y_interpolate = float(input("Enter the value of y to interpolate: "))
 
-# interpolating the value of y for x_interpolate
-y_interpolate = lagrange_interpolation(x_interpolate, x_values, y_values)
+# interpolating the value of x for y_interpolate
+x_interpolate = lagrange_inverse_interpolation(y_interpolate, x_values, y_values)
 
 # printing the polynomial after applying the formula
 print("The polynomial after applying the Lagrange interpolation formula is:")
 terms = []
-for i in range(len(x_values)):
-    term = "({})".format(y_values[i])
-    for j in range(len(x_values)):
+for i in range(len(y_values)):
+    term = "({})".format(x_values[i])
+    for j in range(len(y_values)):
         if i != j:
-            term += " * (x - {}) / ({})".format(x_values[j], x_values[i] - x_values[j])
+            term += " * (y - {}) / ({})".format(y_values[j], y_values[i] - y_values[j])
     terms.append(term)
 polynomial = " + ".join(terms)
 print(polynomial)
 
-# printing the interpolated value of y for x_interpolate
-print("The interpolated value of y for x = {} is: {}".format(x_interpolate, y_interpolate))
-
+# printing the interpolated value of x for y_interpolate
+print("The interpolated value of x for y = {} is: {}".format(y_interpolate, x_interpolate))
 
 
