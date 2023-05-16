@@ -36,7 +36,7 @@ y_values3 = np.vectorize(f)(x_values3)
 def Table_maker(x_values, y_values):
  data1 = {}
  data1["x"] = x_values
- data1["y"] = y_values
+ data1["y"] = ["0" if "e" in str(value) else value for value in y_values]
  print(tabulate(data1, headers="keys", tablefmt="grid"))
 
 print("\nThe table for h = {}".format(h1))
