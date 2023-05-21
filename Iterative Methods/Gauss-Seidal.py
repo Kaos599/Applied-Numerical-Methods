@@ -9,12 +9,13 @@
 # To use divide use x
 
 
-#Import the math, sympy and numpy libraries
-import math as mat 
-from sympy import * 
+# Import the necessary modules
+import math as mat
+from sympy import *
 import sympy as sp
+from tabulate import tabulate
 
-#Define a function to create the equations from the user input
+# Define a function to get the input from the user and return the initial values
 def Equation_maker(): 
     # Declare the global variables for the symbols and the functions
     global x, y, z, f1, f2, f3
@@ -62,21 +63,24 @@ def Equation_maker():
 
     # Return the functions as output
     return f1, f2, f3
-#Call the function to create the equations
+
+# Call the function to create the equations
 f1, f2, f3 = Equation_maker()
 
-#Initialize an iteration counter
+# Initialize an iteration counter
 i = 1
 
-#Initialize an initial guess for each variable
+# Initialize an initial guess for each variable
 x1 = 0 
 y1 = 0 
 z1 = 0
 
-#Loop for 20 iterations or until convergence is reached
-for i in range(20):
+# Initialize an empty list to store the output data
+output_data = []
 
-    ## Store the previous values of each variable
+# Loop for 20 iterations or until convergence is reached
+for i in range(20):
+    # Store the previous values of each variable
     x_previous = x1
     y_previous = y1
     z_previous = z1
@@ -86,8 +90,6 @@ for i in range(20):
     y1 = round(float(f2.subs({x: x1, z: z_previous}).evalf()), 4)
     z1 = round(float(f3.subs({x: x_previous, y: y_previous}).evalf()), 4)
 
-    # Print the current iteration and values of each variable
-    print("Iteration", i, ": x =", x1, ", y = ", y1, ", z = ", z1)
 
     # Check if the absolute relative approximate error for each variable is less than 0.0001 (or 0.01%)
     if (
@@ -95,7 +97,14 @@ for i in range(20):
         and round(y_previous, 4) == round(y1, 4)
         and round(z_previous, 4) == round(z1, 4)
     ):
-
-        # Print the final solution and break out of the loop
-        print("The root is for x = ", x1, ", for y = ", y1, ", for z = ", z1)
         break
+
+    # Append the current iteration and values of each variable to the output_data list
+    output_data.append([i, x1, y1, z1])
+
+# Call tabulate function with output_data and headers as arguments and assign it to table variable
+table = tabulate(output_data, headers=["Iteration", "x", "y", "z"], tablefmt="fancy_grid")
+
+# Print table variable
+print(table)
+
