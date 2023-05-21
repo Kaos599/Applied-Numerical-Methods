@@ -72,7 +72,7 @@ while True:
     i += 1
  
     # Append a sublist with [a, b, t, f(t)] to output_data
-    output_data.append([a, b, t, f(t)])
+    output_data.append([i, a, b, t, f(t)])
  
     # Check if f(t) is close to zero
     if abs(f(t)) < tolerance:
@@ -95,7 +95,7 @@ while True:
         a = t
 
 # Call tabulate function with output_data and headers as arguments and assign it to table variable
-table = tabulate(output_data, headers=["a", "b", "t", "f(t)"], tablefmt="fancy_grid")
+table = tabulate(output_data, headers=["Interation Number","a", "b", "t", "f(t)"], tablefmt="fancy_grid")
 
 # Print table variable
 print(table)
