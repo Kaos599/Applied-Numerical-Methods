@@ -20,6 +20,8 @@ These are methods that use an initial guess and then repeatedly apply a formula 
 
 •	Gauss-Seidel - This is a method for solving a system of linear equations by using an iterative scheme that updates each variable in turn.
 
+• Bisection Method - This is a method for finding the root of a function within a given interval by repeatedly dividing the interval in half and identifying the subinterval in which the root lies, converging towards the root through iterative refinement.
+
 ### Interpolation Methods - 
 These are methods that estimate the value of a function at a given point by using known values of the function at other points. Some examples of interpolation methods are:
 
@@ -28,6 +30,17 @@ These are methods that estimate the value of a function at a given point by usin
 •	Newton Backward Interpolation - This is a method for interpolating a function by using a backward difference table and a polynomial of degree n-1 that passes through n given points.
 
 •	Lagrange Interpolation - This is a method for interpolating a function by using a polynomial of degree n-1 that passes through n given points.
+
+### Numerical Differential-Integral Methods - 
+These are the methods used to approximate the values of derivatives and integrals of mathematical functions, used when it is difficult or impossible to obtain exact analytical solutions for differentiation or integration problems. Some examples of differential-integral methods are:
+
+• Quadrature Rule - This is a method for approximating the area under a curve by evaluating the function at specific points and using corresponding weights. 
+
+• Trapezoidal rule - This is a method for approximating definite integrals by dividing the integration interval into smaller trapezoids and estimating the area under the curve as the sum of the areas of these trapezoids.
+
+• Simpson's Rule - Simpson's rule is a method for approximating definite integrals by dividing the integration interval into smaller intervals and approximating the area under the curve using quadratic polynomials, providing a more accurate estimation compared to the trapezoidal rule.
+
+• Romberg rule - This is a method for improving the accuracy of numerical integration by iteratively refining and extrapolating the estimates obtained from the trapezoidal rule.
 
 ## Features:
 
@@ -39,7 +52,7 @@ These are methods that estimate the value of a function at a given point by usin
 
 •	Solves equations containing Logs, exponentials, Euler’s numbers, trigonometric functions and of course division and multiplication - Our programs can handle various types of nonlinear equations that involve different mathematical functions and operations. You can enter your equation using Python syntax and our programs will evaluate it correctly.
 
-•	Gives you value of all iterations - Our programs can show you the value of each iteration for the iterative methods. You can use this feature to monitor the progress and accuracy of the solution.
+•	Gives you value of all iterations in tabular form - Our programs can show you the value of each iteration for the iterative methods. You can use this feature to monitor the progress and accuracy of the solution. This is shown in a tabular form which is easy to follow.
 
 •	Gives you value of both roots - Our programs can find both the positive and negative roots of a quadratic equation using the quadratic formula. You can enter the coefficients of the equation and our programs will calculate and display both roots.
 
