@@ -65,7 +65,7 @@ These are the methods used to approximate the values of derivatives and integral
 
 •	Pre-requisite = Sympy Module, Math Module, Numpy Module - You need to install these modules before running our programs. You can use pip or conda to install them from the command line. For example, to install sympy using pip, you can type:
 
-```	pip install sympy```
+```pip install sympy```
 
 
 •	Copy the code
