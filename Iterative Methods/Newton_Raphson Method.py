@@ -8,117 +8,160 @@
 # To use divide use x/y
 
 
-
-# Import necessary libraries
+#import neccesary modules
 import math as mat
 from sympy import *
 import sympy as sp
+from tabulate import tabulate
 
-# Define a function to calculate the root of a user-input function using the bisection method
 def root_calculator():
-    # Define a symbolic variable x
+ 
+    # Create a symbol for x
     x = symbols('x')
-    # Prompt the user to enter the function
+ 
+    # Ask the user to enter the function
     fn_input = input("Enter the function: ")
-    # Convert the input string to a symbolic expression
+ 
+    # Convert the input string to a sympy expression
     global expr
     expr = sympify(fn_input)
-    # Create a lambda function to evaluate the expression
-    f = lambdify(x, expr)
-    # Calculating the derivative of user-inputed function
-    p1 = sp.diff(expr, x)
-    #Prompt the user to enter whether they want to input their own value of xnot or get it calculated
+ 
+    # Create a lambda function to evaluate the expression for any x
+    global f 
+    f = lambdify(x, expr) 
+ 
+    # Ask the user to choose the value of X(Nought) or not
     custom=input("Do you want to choose the value of X(Nought)? (y or n): ")
+    
+    # If yes, ask the user to enter the value of X(Nought)
     if custom == 'y':
         x_nought = float(input("X(Nought)= "))
         return x_nought
+    
+    # If no, ask the user to choose the sign of the root
     elif custom == 'n':
-        #Prompt the user to enter whether they want positive or negative root
+ 
         sign = input("Do you want positve root (p) or negative root (n) ?: ")
         print("-"*70)
-        # Printing the user-inputed function and its derivative
+ 
+        # Print the function and its derivative
         print("f(x)=",fn_input)
-        print("f'(x)=",p1)
+        print("f'(x)=",sp.diff(expr, x))
+        
+        # If positive root, loop through positive values of x and find where f(x) changes sign
         if sign == "p":
-            # Calculate the function value for a range of x values
+ 
             root = [f(i) for i in range(0, 20)]
-            # Loop through the function values and find two adjacent values that straddle the x-axis
+ 
             for j in range(0, 19):
                 if (root[j] < 0 and root[j + 1] > 0) or (root[j] > 0 and root[j + 1] < 0) or (root[j] < 0 and root[j + 1] == 0) or (root[j] > 0 and root[j + 1] == 0):
-                    # Print the function values for each iteration
+ 
                     for k in range(0,j+1):
                         print("Iteration", k, ": f(",k,") gives us", root[k])
                     print("Iteration", j+1, ": f(",j+1,") gives us", root[j+1])
                     print("-"*70)
-                    # Print the two values and their indices
+ 
                     print("First value of x =", j, "and it gives us:", root[j])
                     print("Second value of x =", j + 1, "and it gives us:", root[j + 1])
-                    # Calculate the x_nought
+ 
+                    # Choose the value of X(Nought) based on the absolute values of f(x)
                     if (abs(root[j]) > abs(root[j+1])):
                         x_nought = j+1
                     elif(abs(root[j]) < abs(root[j+1])):
                         x_nought = j
                     else:
                         x_nought = ((j+j+1)/2)
-                    # You can change this value by copying 'x_nought = (Value Here)' and deleting the if statement that is calculating the current value of x nought
+ 
                     print("Value of X(Nought) is", x_nought)
-                    # Return the midpoint value
+ 
                     return x_nought
-        if sign == "n":
-            # Calculate the function value for a range of x values
+        
+        # If negative root, loop through negative values of x and find where f(x) changes sign
+        elif sign == "n":
+ 
             root = [f(i) for i in range(-1, -19, -1)]
-            # Loop through the function values and find two adjacent values that straddle the x-axis
+ 
             for j in range(-1, -19, -1):
                 if (root[j] < 0 and root[j - 1] > 0) or (root[j] > 0 and root[j - 1] < 0) or (root[j] < 0 and root[j - 1] == 0) or (root[j] > 0 and root[j - 1] == 0):
-                    # Print the function values for each iteration
+ 
                     for k in range(-1,j-1,-1):
                         print("Iteration", -k, ": f(",k,") gives us", root[k])
                     print("Iteration", -j+1, ": f(",j-1,") gives us", root[j-1])
                     print("-"*70)
-                    # Print the two values and their indices
+ 
                     print("First value of x =", j, "and it gives us:", root[j])
                     print("Second value of x =", j - 1, "and it gives us:", root[j - 1])
-                    # Calculate the x_nought
+ 
+                    # Choose the value of X(Nought) based on the absolute values of f(x)
                     if (abs(root[j]) > abs(root[j-1])):
                         x_nought = j-1
                     elif(abs(root[j]) < abs(root[j-1])):
                         x_nought = j
                     else:
                         x_nought = ((j+j-1)/2)
-                    # You can change this value by copying 'x_nought = (Value Here)' and deleting the if statement that is calculating the current value of x nought
+ 
                     print("Therefore value of X(Nought) is", x_nought)
-                    # Return the midpoint value
+ 
                     return x_nought
+        
+        # If invalid input, print an error message
         else:
             print("Invalid Input")
+    
+    # If invalid input, print an error message
     else:
         print("Invalid Input")
 
-# Call the root_calculator function to get the initial value of x_nought
+
+# Call the root_calculator function and assign the returned value to x_nought
 x_nought = root_calculator()
 
-# Define a symbolic variable x
+
+# Create a symbol for x
 x = symbols('x')
-# Create a lambda function to evaluate the derivative of the expression
+
+# Create a lambda function to evaluate the derivative of the expression for any x
 d = lambdify(x, diff(expr,x))
-# Initialize the iteration counter
-i = 1
-# Implement the Newton-Raphson method to find the root of the expression
+
+# Initialize a list of lists to store output data
+output_data = []
+
+# Initialize a counter variable for counting the iterations
+i = 0
+
+# Repeat until convergence is reached
 while True:
-    # Calculate the value of the derivative at x_nought
+ 
+    # Calculate the derivative of the expression at x_nought
     d1 = sp.diff(expr, x)
-    # Save the current value of x_nought
+ 
+    # Store the previous value of x_nought
     x_nought_previous = x_nought
-    # Calculate the next value of x_nought using the Newton-Raphson formula
+ 
+    # Apply the Newton-Raphson formula to get the next value of x_nought
     expr2 = x_nought - expr.subs(x, x_nought)/d1.subs(x, x_nought)
-    # Round the value to four decimal places
+ 
+    # Round the result to six decimal places
     x_nought = round(expr2, 6)
-    # Print the current value of x_nought and the iteration number
-    print("Iteration", i, ": x =", x_nought)
-    # Check if the current value of x_nought is the same as the previous value (convergence)
+
+    # Append a sublist with [x_nought_previous, x_nought, f(x_nought)] to output_data
+    output_data.append([x_nought_previous, x_nought, f(x_nought)])
+     # Check if convergence is reached by comparing previous and current values of x_nought
     if round(x_nought_previous, 6) == round(x_nought, 6):
-        # If so, print the root and exit the loop
+ 
+        # Call tabulate function with output_data and headers as arguments and assign it to table variable
+        table = tabulate(output_data, headers=["x_nought_previous", "x_nought", "f(x_nought)"], tablefmt="fancy_grid")
+
+        # Print table variable
+        print(table)
+
+        # Print final result
         print("The root is:", x_nought)
+        
+        # Break out of while loop
         break
-    # If not, increment the iteration counter and continue the loop
+ 
+    # Increment the counter by 1
     i += 1
+
+
