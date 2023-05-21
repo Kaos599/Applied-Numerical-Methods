@@ -13,6 +13,7 @@
 import math as mat
 from sympy import *
 import sympy as sp
+from tabulate import tabulate
 
 # Defining a function to find the root of a given function using the fixed point iteration method
 def root_calculator():
@@ -28,6 +29,7 @@ def root_calculator():
     expr = sympify(fn_input)
     
     # Creating a lambda function to evaluate the expression numerically
+    global f
     f = lambdify(x, expr)  
     
     if("log" in fn_input):
@@ -96,6 +98,8 @@ def eligibility_of_using_FPI():
     # Evaluating the derivative at j and j+1 using subs() and Abs()
     d4 = Abs(d3.subs(x1, j))
     d5 = Abs(d3.subs(x1, j+1))
+
+    
     
     # Checking if the derivative is less than 1 in absolute value at both points
     if ((d4 < 1) | (d5 < 1)):
@@ -120,6 +124,9 @@ x = symbols('x')
 # Initializing an iteration counter i to 1
 i = 1
 
+# Initialize a list of lists to store output data
+output_data = []
+
 # Looping while T is True, i.e., while the iteration method is applicable 
 while T == true:
     
@@ -133,24 +140,32 @@ while T == true:
     # Rounding expr3 to 4 decimal places and storing it in x_nought
     x_nought = round(expr3, 4)
 
+    
+    # Append a sublist with [i, x_nought_previous, x_nought, f(x_nought)] to output_data
+    output_data.append([i, x_nought_previous, x_nought, f(x_nought)])
+
     # Incrementing the iteration counter by 1
     i += 1
     if (i < 18 ):
-        # Printing the iteration number and the value of x_nought
-        print("Iteration", i, ": x =", x_nought)
          # Checking if the previous and current values of x_nought are equal up to 4 decimal places
         if round(x_nought_previous, 4) == round(x_nought, 4):
-            
+
+            # Call tabulate function with output_data and headers as arguments and assign it to table variable
+            table = tabulate(output_data, headers=["Iteration Number", "x_nought_previous", "x_nought", "f(x_nought)"], tablefmt="fancy_grid")
+            # Print table variable
+            print(table)
             # Printing the root as x_nought and breaking the loop
             print("The root is:", x_nought)
             break
     
     else:
-         print("Iteration", i, ": x =", x_nought)
+         
          # Checking if the previous and current values of x_nought are equal up to 4 decimal places
          if round(x_nought_previous, 3) == round(x_nought, 3):
-            
+            # Call tabulate function with output_data and headers as arguments and assign it to table variable
+            table = tabulate(output_data, headers=["Iteration Number", "x_nought_previous", "x_nought", "f(x_nought)"], tablefmt="fancy_grid")
+            # Print table variable
+            print(table)
             # Printing the root as x_nought and breaking the loop
             print("The root is:", x_nought)
             break
-   
