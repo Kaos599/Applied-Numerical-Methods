@@ -60,6 +60,8 @@ These are the methods used to approximate the values of derivatives and integral
 
 •	Visualises Matrix calculations - Our programs can visualise the matrix operations involved in solving a system of linear equations using Gauss-Elimination or Gauss-Seidel methods. You can see how the matrix is transformed into an upper triangular form or how the variables are updated in each iteration. This can help you understand the methods better and check for errors.
 
+•	Outputs Iterations in tabular form - we have implemented tabular function wherever possible to give the output of the programs a nice readability and fancy look.
+
 
 ## Requirements
 
