@@ -145,12 +145,12 @@ while True:
     x_nought = round(expr2, 6)
 
     # Append a sublist with [x_nought_previous, x_nought, f(x_nought)] to output_data
-    output_data.append([x_nought_previous, x_nought, f(x_nought)])
+    output_data.append([i, x_nought_previous, x_nought, f(x_nought)])
      # Check if convergence is reached by comparing previous and current values of x_nought
     if round(x_nought_previous, 6) == round(x_nought, 6):
  
         # Call tabulate function with output_data and headers as arguments and assign it to table variable
-        table = tabulate(output_data, headers=["x_nought_previous", "x_nought", "f(x_nought)"], tablefmt="fancy_grid")
+        table = tabulate(output_data, headers=["Iteration Number", "x_nought_previous", "x_nought", "f(x_nought)"], tablefmt="fancy_grid")
 
         # Print table variable
         print(table)
