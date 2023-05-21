@@ -31,8 +31,10 @@ These are methods that estimate the value of a function at a given point by usin
 
 •	Lagrange Interpolation - This is a method for interpolating a function by using a polynomial of degree n-1 that passes through n given points.
 
+• Lagrange Inverse Interpolation - This is a method for finding the value of a variable x that corresponds to a given value of a function y by using a polynomial of degree n-1 that passes through n given points (x_i, y_i).
+
 ### Numerical Differential-Integral Methods - 
-These are the methods used to approximate the values of derivatives and integrals of mathematical functions, used when it is difficult or impossible to obtain exact analytical solutions for differentiation or integration problems. Some examples of differential-integral methods are:
+These are the methods used to approximate the values of derivatives and integrals of mathematical functions, used when it is difficult or impossible to obtain exact analytical solutions for differentiation or integration problems:
 
 • Quadrature Rule - This is a method for approximating the area under a curve by evaluating the function at specific points and using corresponding weights. 
 
