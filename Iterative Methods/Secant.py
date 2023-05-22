@@ -13,6 +13,7 @@
 import math as mat
 from sympy import *
 import sympy as sp
+from tabulate import tabulate
 
 # Define a function to calculate the root of a user-input function using the bisection method
 def root_calculator():
@@ -21,7 +22,7 @@ def root_calculator():
     # Prompt the user to enter the function
     fn_input = input("Enter the function: ")
     # Convert the input string to a symbolic expression
-    global expr, j
+    global expr, j, f
     expr = sympify(fn_input)
     # Create a lambda function to evaluate the expression
     f = lambdify(x, expr)
@@ -34,9 +35,16 @@ def root_calculator():
     # Printing the user-inputed function and its derivative
     print("f(x)=",fn_input)
     print("f'(x)=",p1)
-    if sign == "p":
-        # Calculate the function value for a range of x values
+    if("log" in fn_input) and sign == "p":
+        # Evaluating the expression for x values from 0 to 19 and storing them in a list
+        root = [f(i) for i in range(1, 20)]
+    elif ("log" in fn_input) and sign == "n":
+        # Evaluating the expression for x values from 0 to 19 and storing them in a list
+        root = [f(i) for i in range(-1, -19, -1)]
+    else:
         root = [f(i) for i in range(0, 20)]
+
+    if sign == "p":
         # Loop through the function values and find two adjacent values that straddle the x-axis
         for j in range(0, 19):
             if (root[j] < 0 and root[j + 1] > 0) or (root[j] > 0 and root[j + 1] < 0) or (root[j] < 0 and root[j + 1] == 0) or (root[j] > 0 and root[j + 1] == 0):
@@ -56,8 +64,8 @@ def root_calculator():
                 # Return the midpoint value
                 return x_nought
     if sign == "n":
-        # Calculate the function value for a range of x values
-        root = [f(i) for i in range(-1, -19, -1)]
+
+        
         # Loop through the function values and find two adjacent values that straddle the x-axis
         for j in range(-1, -19, -1):
             if (root[j] < 0 and root[j - 1] > 0) or (root[j] > 0 and root[j - 1] < 0) or (root[j] < 0 and root[j - 1] == 0) or (root[j] > 0 and root[j - 1] == 0):
@@ -87,6 +95,8 @@ x_nought = root_calculator()
 x = symbols('x')
 # Create a lambda function to evaluate the derivative of the expression
 d = lambdify(x, expr)
+# Initialize an empty list to store the output data
+iterations = []
 # Initialize the iteration counter
 i = 1
 # Implement the Secant Method to find the root of the expression
@@ -94,13 +104,14 @@ while True:
     if sign == "p":
         x_nought_previous = x_nought
         # Calculate using the Secant formula
-        expr2 =  (j+1) - ((((j+1) - x_nought)/(expr.subs(x, (j+1))-expr.subs(x, x_nought)))*expr.subs(x, (j+1)))
+        expr2 = (j + 1) - ((((j + 1) - x_nought) / (expr.subs(x, j + 1) - expr.subs(x, x_nought))) * expr.subs(x, j + 1))
+
         # Round the value to four decimal places
         x_nought = round(expr2, 4)
-        # Print the current value of x_nought and the iteration number
-        print("Iteration", i, ": x =", x_nought)
+        iterations.append([i, x_nought])
         # Check if the current value of x_nought is the same as the previous value (convergence)
         if round(x_nought_previous, 4) == round(x_nought, 4):
+            print(tabulate(iterations, headers=["Iteration", "x"],tablefmt="fancy_grid"))
             # If so, print the root and exit the loop
             print("The root is:", x_nought)
             break
@@ -109,15 +120,16 @@ while True:
     else:
         x_nought_previous = x_nought
         # Calculate using the Secant formula
-        expr2 =  (j-1) - ((((j-1) - x_nought)/(expr.subs(x, (j-1))-expr.subs(x, x_nought)))*expr.subs(x, (j-1)))
+        expr2 = (j - 1) - ((((j - 1) - x_nought) / (f(j - 1) - f(x_nought))) * f(j - 1))
         # Round the value to four decimal places
         x_nought = round(expr2, 4)
-        # Print the current value of x_nought and the iteration number
-        print("Iteration", i, ": x =", x_nought)
+        iterations.append([i, x_nought])
         # Check if the current value of x_nought is the same as the previous value (convergence)
         if round(x_nought_previous, 4) == round(x_nought, 4):
+            print(tabulate(iterations, headers=["Iteration", "x"],tablefmt="fancy_grid"))
             # If so, print the root and exit the loop
             print("The root is:", x_nought)
             break
         # If not, increment the iteration counter and continue the loop
         i += 1
+
