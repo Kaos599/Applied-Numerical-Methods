@@ -10,7 +10,7 @@ from gauss_elimination import solve_gaussian_elimination
 from math import pi, e, log, sin, cos, tan
 
 def main():
-    st.image("logo_1.png", use_column_width=True)
+    st.image("https://github.com/Kaos599/Applied-Numerical-Methods/blob/0e1fcdf3dc5ad86a9ec64e4bacd9ea123e92677f/Website/logo_1.png", use_column_width=True)
     st.title("Numerate: Applied Maths Solver")
     st.sidebar.header("Select Method")
 
